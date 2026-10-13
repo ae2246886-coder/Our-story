@@ -10,8 +10,39 @@
 <style>
 *{box-sizing:border-box} body{margin:0;background:#0d0b0c;color:#f7f2ef;font-family:Cairo,Arial,sans-serif}
 .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:28px 18px;position:relative;overflow:hidden}
-.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.18),rgba(13,11,12,.94));z-index:1}
-.hero img{position:absolute;width:100%;height:100%;object-fit:cover;object-position:center;filter:saturate(.82)}
+.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.18),rgba(13,11,12,.94));z-index:1}.hero{
+  isolation:isolate;
+  background:#0d0b0c;
+}
+
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:-30px;
+  background:url('hero.jpg') center center / cover no-repeat;
+  filter:blur(28px) brightness(.48);
+  z-index:-1;
+}
+
+.hero img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  object-position:center;
+  filter:saturate(.9);
+  z-index:0;
+}
+
+.hero::before{
+  background:linear-gradient(
+    180deg,
+    rgba(0,0,0,.05) 0%,
+    rgba(0,0,0,.12) 45%,
+    rgba(13,11,12,.88) 100%
+  );
+  }
 .hero-content{position:relative;z-index:2;text-align:center;max-width:760px;padding:40px 20px}
 .kicker{letter-spacing:4px;font-size:12px;color:#d9c6bb;margin-bottom:18px;direction:ltr}
 h1{font-family:"Playfair Display",serif;font-size:clamp(42px,10vw,82px);font-weight:500;line-height:1.05;margin:0 0 18px;direction:ltr}
